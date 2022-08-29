@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load email_to_link %}
 
 {% block content %}
 
@@ -39,7 +40,7 @@
               </ul>
               <ul class="list-unstyled">
                 <li>Email</li>
-                <li><strong>geeklab@spb.ru</strong></li>
+                <li><strong>{{ 'geeklab@spb.ru'|email_to_link }}</strong></li>
               </ul>
               <ul class="list-unstyled">
                 <li>Адрес</li>
@@ -75,7 +76,7 @@
               </ul>
               <ul class="list-unstyled">
                 <li>Email</li>
-                <li><strong>geeklab@kz.ru</strong></li>
+                <li><strong>{{ 'geeklab@kz.ru'|email_to_link }}</strong></li>
               </ul>
               <ul class="list-unstyled">
                 <li>Адрес</li>
@@ -108,7 +109,7 @@
               </ul>
               <ul class="list-unstyled">
                 <li>Email</li>
-                <li><strong>geeklab@msk.ru</strong></li>
+                <li><strong>{{ 'geeklab@msk.ru'|email_to_link }}</strong></li>
               </ul>
               <ul class="list-unstyled">
                 <li>Адрес</li>
