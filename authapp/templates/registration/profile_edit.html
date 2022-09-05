@@ -17,7 +17,6 @@
 
       <form method="post" class="mt-2" enctype="multipart/form-data">
         {% csrf_token %}
-<<<<<<< HEAD
         <div id="div_id_username" class="form-group"> <label for="id_username"
           class=" requiredField">
           Username<span class="asteriskField">*</span> </label>
@@ -42,51 +41,21 @@
           <div class=""> <input type="text" name="last_name" maxlength="150"
             class="textinput textInput form-control" id="id_last_name"
             value="{{ user.last_name }}"> </div>
-=======
-        <div id="div_id_username" class="form-group"> <label for="id_username" class=" requiredField">
-          Username<span class="asteriskField">*</span> </label>
-          <div class=""> <input type="text" name="username" maxlength="150"
-            class="textinput textInput form-control" required id="id_username" value="{{ user.username }}">
-            <small id="hint_id_username" class="form-text text-muted">Required. 150 characters or fewer.
-              Letters, digits and @/./+/-/_ only.</small> </div>
-        </div>
-        <div id="div_id_first_name" class="form-group"> <label for="id_first_name" class="">
-          First name
-        </label>
-          <div class=""> <input type="text" name="first_name" maxlength="150"
-            class="textinput textInput form-control" id="id_first_name" value="{{ user.first_name }}">
-          </div>
-        </div>
-        <div id="div_id_last_name" class="form-group"> <label for="id_last_name" class="">
-          Last name
-        </label>
-          <div class=""> <input type="text" name="last_name" maxlength="150"
-            class="textinput textInput form-control" id="id_last_name" value="{{ user.last_name }}"> </div>
->>>>>>> 1ca9994ce2396aa320b91d60f04c6f542b1cd7bb
         </div>
         <div id="div_id_age" class="form-group"> <label for="id_age" class="">
           Age
         </label>
-<<<<<<< HEAD
           <div class=""> <input type="number" name="age" min="0"
             class="numberinput form-control" id="id_age" value="{{ user.age }}">
           </div>
         </div>
         <div id="div_id_avatar" class="form-group"> <label for="id_avatar"
           class="">
-=======
-          <div class=""> <input type="number" name="age" min="0" class="numberinput form-control" id="id_age"
-            value="{{ user.age }}">
-          </div>
-        </div>
-        <div id="div_id_avatar" class="form-group"> <label for="id_avatar" class="">
->>>>>>> 1ca9994ce2396aa320b91d60f04c6f542b1cd7bb
           Avatar
         </label>
           <div class=""> <input type="file" name="avatar" accept="image/*"
             class="clearablefileinput form-control-file" id="id_avatar"> </div>
         </div>
-<<<<<<< HEAD
         <div id="div_id_email" class="form-group"> <label for="id_email"
           class=" requiredField">
           Email address<span class="asteriskField">*</span> </label>
@@ -98,16 +67,6 @@
 
         <button type=" submit"
           class="btn btn-primary btn-block">Сохранить</button>
-=======
-        <div id="div_id_email" class="form-group"> <label for="id_email" class=" requiredField">
-          Email address<span class="asteriskField">*</span> </label>
-          <div class=""> <input type="text" name="email" maxlength="256" class="textinput textInput form-control"
-            required="" id="id_email" value="{{ user.email }}">
-          </div>
-        </div>
-
-        <button type=" submit" class="btn btn-primary btn-block">Сохранить</button>
->>>>>>> 1ca9994ce2396aa320b91d60f04c6f542b1cd7bb
       </form>
     </div>
   </div>
