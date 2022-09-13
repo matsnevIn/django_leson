@@ -16,3 +16,15 @@
 ## Лицензия
 
 MIT
+
+
+
+
+
+
+
+
+
+pip install python-gettext
+sudo apt-get install gettext
+
