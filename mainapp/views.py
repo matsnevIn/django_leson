@@ -70,9 +70,12 @@ class CoursesDetailView(TemplateView):
     def get_context_data(self, pk=None, **kwargs):
         logger.debug("Yet another log message")
         context = super(CoursesDetailView, self).get_context_data(**kwargs)
-        context["course_object"] = get_object_or_404(mainapp_models.Courses, pk=pk)
-        context["lessons"] = mainapp_models.Lesson.objects.filter(course=context["course_object"])
-        context["teachers"] = mainapp_models.CourseTeachers.objects.filter(course=context["course_object"])
+        context["course_object"] = get_object_or_404(
+            mainapp_models.Courses, pk=pk)
+        context["lessons"] = mainapp_models.Lesson.objects.filter(
+            course=context["course_object"])
+        context["teachers"] = mainapp_models.CourseTeachers.objects.filter(
+            course=context["course_object"])
         if not self.request.user.is_anonymous:
             if not mainapp_models.CourseFeedback.objects.filter(
                 course=context["course_object"], user=self.request.user
@@ -84,11 +87,14 @@ class CoursesDetailView(TemplateView):
         cached_feedback = cache.get(f"feedback_list_{pk}")
         if not cached_feedback:
             context["feedback_list"] = (
-                mainapp_models.CourseFeedback.objects.filter(course=context["course_object"])
+                mainapp_models.CourseFeedback.objects.filter(
+                    course=context["course_object"])
                 .order_by("-created", "-rating")[:5]
                 .select_related()
             )
-            cache.set(f"feedback_list_{pk}", context["feedback_list"], timeout=300)  # 5 minutes
+            # 5 minutes
+            cache.set(f"feedback_list_{pk}",
+                      context["feedback_list"], timeout=300)
         else:
             context["feedback_list"] = cached_feedback
 
@@ -101,7 +107,8 @@ class CourseFeedbackFormProcessView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
-        rendered_card = render_to_string("mainapp/includes/feedback_card.html", context={"item": self.object})
+        rendered_card = render_to_string(
+            "mainapp/includes/feedback_card.html", context={"item": self.object})
         return JsonResponse({"card": rendered_card})
 
 
@@ -111,19 +118,22 @@ class ContactsPageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ContactsPageView, self).get_context_data(**kwargs)
         if self.request.user.is_authenticated:
-            context["form"] = mainapp_forms.MailFeedbackForm(user=self.request.user)
+            context["form"] = mainapp_forms.MailFeedbackForm(
+                user=self.request.user)
         return context
 
     def post(self, *args, **kwargs):
         if self.request.user.is_authenticated:
-            cache_lock_flag = cache.get(f"mail_feedback_lock_{self.request.user.pk}")
+            cache_lock_flag = cache.get(
+                f"mail_feedback_lock_{self.request.user.pk}")
             if not cache_lock_flag:
                 cache.set(
                     f"mail_feedback_lock_{self.request.user.pk}",
                     "lock",
                     timeout=300,
                 )
-                messages.add_message(self.request, messages.INFO, _("Message sended"))
+                messages.add_message(
+                    self.request, messages.INFO, _("Message sended"))
                 mainapp_tasks.send_feedback_mail.delay(
                     {
                         "user_id": self.request.POST.get("user_id"),
