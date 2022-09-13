@@ -49,21 +49,20 @@ INSTALLED_APPS = [
     "authapp",
     "crispy_forms",
     "debug_toolbar",
-    "debug_toolbar",
+
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
-
 
 
 ROOT_URLCONF = "config.urls"
@@ -208,8 +207,8 @@ CACHES = {
     }
 }
 
-#CELERY_BROKER_URL = "redis://localhost:6379"
-#CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
 
 
 # Read about sending email:
@@ -230,3 +229,5 @@ CACHES = {
 # Email as files for debug
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = "var/email-messages/"
+
+LOCALE_PATHS = [BASE_DIR / "locale"]
